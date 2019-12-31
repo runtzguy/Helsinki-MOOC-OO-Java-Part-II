@@ -54,20 +54,123 @@ public class PersonalBoard extends GameOfLifeBoard {
 
     @Override
     public int getNumberOfLivingNeighbours(int x, int y) {
-        int numberOfLivingNeighbours = 0;
-        for (int i = x - 1; i <= x + 1; i++) {
-            for (int j = y - 1; j <= y + 1; j++) {
-                if (isAlive(i, j)) {
-                    numberOfLivingNeighbours++;
-                }
+       
+           int num = 0;
+        
+        //Top left corner
+        if(x == 0 && y == 0){
+            if(this.isAlive(x+1, y)){
+                num++;
+            }
+            if(this.isAlive(x, y+1)){
+                num++;
+            }
+            if(this.isAlive(x+1, y+1)){
+                num++;
+            }
+        } 
+        //Top right corner
+        else if (x == super.getWidth()-1 && y == 0){
+            if(this.isAlive(x-1, y)){
+                num++;
+            }
+            if(this.isAlive(x-1, y+1)){
+                num++;
+            }
+            if(this.isAlive(x, y+1)){
+                num++;
             }
         }
-
-        if (isAlive(x, y)) {
-            numberOfLivingNeighbours--; //take 1 to account for original cell if alive
+        // Bottom Left Corner
+        else if (x == 0 && y == super.getHeight() -1){
+            if(this.isAlive(x, y-1)){
+                num++;
+            }
+            if(this.isAlive(x+1, y-1)){
+                num++;
+            }
+            if(this.isAlive(x+1, y)){
+                num++;
+            }
         }
-
-        return numberOfLivingNeighbours;
+        //Bottom Right Corner
+        else if (x == super.getWidth()-1 && y == super.getHeight()-1){
+            if(this.isAlive(x, y-1)){
+                num++;
+            }
+            if(this.isAlive(x-1, y-1)){
+                num++;
+            }
+            if(this.isAlive(x-1, y)){
+                num++;
+            }
+        }
+        // Left Side
+        
+        else if( x == 0 && y != 0 && y != super.getHeight()-1){
+            if(this.isAlive(x, y-1)){
+                num++;
+            }
+            if(this.isAlive(x+1, y-1)){
+                num++;
+            }
+            if(this.isAlive(x+1, y)){
+                num++;
+            }
+            if(this.isAlive(x, y+1)){
+                num++;
+            }
+            if(this.isAlive(x+1, y+1)){
+                num++;
+            }
+        }
+        // Right Side
+        
+        else if( x == super.getWidth()-1 && y != 0 && y != super.getHeight()-1){
+            if(this.isAlive(x, y-1)){
+                num++;
+            }
+            if(this.isAlive(x-1, y-1)){
+                num++;
+            }
+            if(this.isAlive(x-1, y)){
+                num++;
+            }
+            if(this.isAlive(x-1, y+1)){
+                num++;
+            }
+            if(this.isAlive(x+1, y+1)){
+                num++;
+            }
+        }
+        else {
+            if(this.isAlive(x-1, y-1)){
+                num++;
+            }
+            if(this.isAlive(x, y-1)){
+                num++;
+            }
+            if(this.isAlive(x+1, y-1)){
+                num++;
+            }
+            if(this.isAlive(x-1, y)){
+                num++;
+            }
+            if(this.isAlive(x+1, y)){
+                num++;
+            }
+            if(this.isAlive(x-1, y+1)){
+                num++;
+            }
+            if(this.isAlive(x, y+1)){
+                num++;
+            }
+            if(this.isAlive(x+1, y+1)){
+                num++;
+            }
+        }
+        return num;
+        
     }
 
     @Override
